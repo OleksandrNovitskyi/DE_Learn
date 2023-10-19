@@ -18,7 +18,9 @@ query = 'SELECT * FROM inc'
 df = pd.read_sql_query(query, engine)
 
 # Modify the data as needed
-df.loc[df['person'] == 'John', 'person'] = 'Jim'
+df.loc[df['person'] == 'Poll', 'income'] = 6000
+
+df['salary'] = df['salary'].apply(lambda x: x * 1.2)
 
 # Write the modified DataFrame back to SQL Server
 table_name = 'inc'
