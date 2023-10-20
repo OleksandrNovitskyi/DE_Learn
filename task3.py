@@ -17,3 +17,5 @@ df = pd.read_csv('Bank_of_America_data.csv')
 
 # Write the modified DataFrame back to SQL Server
 df.to_sql('Bank_of_America', con=engine, if_exists='replace', index=False)
+
+engine.dispose()
