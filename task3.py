@@ -13,12 +13,7 @@ conn_str = f"mssql+pyodbc://{username}:{password}@{server_name}/{database_name}?
 # Establish a connection using SQLAlchemy
 engine = create_engine(conn_str)
 
-query = 'SELECT * FROM inc'
-df = pd.read_sql_query(query, engine)
-
-df.loc[df['person'] == 'Poll', 'income'] = 6000
-
-df['salary'] = df['salary'].apply(lambda x: x * 1.2)
+df = pd.read_csv('Bank_of_America_data.csv')
 
 # Write the modified DataFrame back to SQL Server
-df.to_sql('inc', con=engine, if_exists='replace', index=False)
+df.to_sql('Bank_of_America', con=engine, if_exists='replace', index=False)
