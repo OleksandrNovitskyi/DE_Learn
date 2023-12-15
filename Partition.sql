@@ -9,14 +9,23 @@ CREATE PARTITION SCHEME myRangePS1
     ALL TO ('PRIMARY') ;  
 GO  
 
-CREATE TABLE dbo.PartitionTable (col1 datetime2(0) PRIMARY KEY, col2 char(10))  
-    ON myRangePS1 (col1) ;  
+CREATE TABLE dbo.PartitionTable 
+(
+	col0 INT IDENTITY(1,1),
+	col1 datetime2(0),
+	сol2 char(10)
+	PRIMARY KEY (col0, col1)
+) ON myRangePS1 (col1) ;  
 GO
 
 
 -- Testing
-DROP TABLE dbo.PartitionTable;
-
+DROP TABLE Northwind.dbo.PartitionTable;
+DROP PARTITION SCHEME myRangePS1;
+DROP PARTITION FUNCTION myRangePF1;
+GO  
 SELECT * FROM [Northwind].[dbo].[PartitionTable];
-
+GO  
 INSERT INTO [Northwind].[dbo].[PartitionTable] VALUES (SYSDATETIME(),'text');
+
+
